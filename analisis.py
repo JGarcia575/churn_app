@@ -117,30 +117,35 @@ st.divider()
 
 columnas_numericas = ["Tenure", "ChargesMonthly", "ChargesTotal"]
 
-filtro_2 = st.selectbox("Filtrar por categoría", columnas_numericas)
+col1, _ = st.columns([.5, .5])
 
-st.subheader(f"**Evasión por {filtro_2}**")
+with col1:
+    filtro_2 = st.selectbox("Filtrar por categoría", columnas_numericas)
 
-fig3, ax3 = plt.subplots(figsize=(6,4))
-ax3 = sns.boxplot(df, x='Churn', y=filtro_2, hue='Churn', palette='PiYG_r')
-ax3.set_title(f'Evasión por {filtro_2}', fontsize=12, fontweight='bold')
-ax3.set_xlabel('Cancelación', fontsize=10, fontweight='bold')
-ax3.set_ylabel(f'{filtro_2}', fontsize=10, fontweight='bold')
+    st.subheader(f"**Evasión por {filtro_2}**")
 
-ax3.set_ylim(0, df[filtro_2].max())
-ax3.yaxis.set_minor_locator(ticker.AutoMinorLocator())
+    fig3, ax3 = plt.subplots(figsize=(6,4))
 
-ax3.spines[['top', 'right']].set_visible(False)
+    ax3 = sns.boxplot(df, x='Churn', y=filtro_2, hue='Churn', palette='PiYG_r')
+    ax3.set_title(f'Evasión por {filtro_2}', fontsize=12, fontweight='bold')
+    ax3.set_xlabel('Cancelación', fontsize=10, fontweight='bold')
+    ax3.set_ylabel(f'{filtro_2}', fontsize=10, fontweight='bold')
 
-st.pyplot(fig3)
+    ax3.set_ylim(0, df[filtro_2].max())
+    ax3.yaxis.set_minor_locator(ticker.AutoMinorLocator())
 
-st.warning("⚠️**Atención**⚠️")
-st.write("- Alertamos la presencia de **valores atípicos** para las variables **'_Tenure_'** y **'_ChargeTotal_'**.")
-st.write("- Hay que elegir un tratamiento para los valores atípicos o tomar como parámetro la mediana.")
+    ax3.spines[['top', 'right']].set_visible(False)
+
+    st.pyplot(fig3)
+
+    st.warning("⚠️**Atención**⚠️")
+    st.write("- Alertamos la presencia de **valores atípicos** para las variables **'_Tenure_'** y **'_ChargeTotal_'**.")
+    st.write("- Hay que elegir un tratamiento para los valores atípicos o tomar como parámetro la mediana.")
 
 st.divider()
 
-st.subheader(f"**Cantidad de servicios por estado**")
+#st.subheader(f"**Cantidad de servicios por estado**")
+
 
 servicios = df[['PhoneService', 'MultipleLines', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
        'TechSupport', 'StreamingTV', 'StreamingMovies']]
@@ -164,44 +169,53 @@ servicios_columnas.append('InternetService')
 
 servicios['numero_servicios'] = servicios[servicios_columnas].sum(axis=1)
 
-fig4, ax4 = plt.subplots(figsize=(6,4))
-ax4 = sns.boxplot(servicios, x='Churn', y='numero_servicios', hue='Churn', palette='PiYG_r')
-ax4.set_title('Número de servicios por cliente ', fontsize=12, fontweight='bold' )
-ax4.set_xlabel('Baja', fontsize=10, fontweight='bold' )
-ax4.set_ylabel('Cantidad de servicios', fontsize=10, fontweight='bold')
+col2, col3 = st.columns([.5, .5])
 
-ax4.set_ylim(0, 10)
-ax4.yaxis.set_minor_locator(ticker.MultipleLocator(1))
+with col2:
+    st.subheader(f"**Cantidad de servicios por estado**")
 
-ax4.spines[['top', 'right']].set_visible(False)
+    fig4, ax4 = plt.subplots(figsize=(6,4))
+    ax4 = sns.boxplot(servicios, x='Churn', y='numero_servicios', hue='Churn', palette='PiYG_r')
+    ax4.set_title('Número de servicios por cliente ', fontsize=12, fontweight='bold' )
+    ax4.set_xlabel('Baja', fontsize=10, fontweight='bold' )
+    ax4.set_ylabel('Cantidad de servicios', fontsize=10, fontweight='bold')
 
-st.pyplot(fig4)
+    ax4.set_ylim(0, 10)
+    ax4.yaxis.set_minor_locator(ticker.MultipleLocator(1))
 
-st.success("Factor de retención", icon="✅")
+    ax4.spines[['top', 'right']].set_visible(False)
 
-st.write("- Los clientes que se fueron y los que se quedaron no difieren \n \
+    st.pyplot(fig4)
+
+    st.success("Factor de retención", icon="✅")
+
+    st.write("- Los clientes que se fueron y los que se quedaron no difieren \n \
            en el número de servicios")
 
-st.divider()
+#st.divider()
 
-st.subheader("**Número de servicios y evasión**")
+#st.subheader("**Número de servicios y evasión**")
 
 churn_servicios = pd.crosstab(servicios['numero_servicios'], servicios['Churn'], normalize='index')
 
 churn_servicios.rename({0:'No', 1:'Yes'}, axis=1, inplace=True)
 
-fig5, ax5 = plt.subplots(figsize=(6, 4))
-sns.barplot(data=churn_servicios, x=churn_servicios.index, y=churn_servicios['Yes'], hue=churn_servicios['Yes'], palette='Reds_d')
-ax5.axhline(y=evasion_yes, linestyle='dashed', linewidth=1.5, color='red')
-ax5.set_title('Tasa de evasión por número de servicios')
-ax5.set_xlabel('Número de servicios')
-ax5.set_ylabel("Tasa de evasión(%)")
-ax5.set_ylim(0,1)
+with col3:
+    st.subheader("**Número de servicios y evasión**")
 
-st.pyplot(fig5)
+    fig5, ax5 = plt.subplots(figsize=(6, 4))
+    sns.barplot(data=churn_servicios, x=churn_servicios.index, y=churn_servicios['Yes'], hue=churn_servicios['Yes'], palette='Reds_d')
+    ax5.axhline(y=evasion_yes, linestyle='dashed', linewidth=1.5, color='red')
+    ax5.set_title('Tasa de evasión por número de servicios')
+    ax5.set_xlabel('Número de servicios')
+    ax5.set_ylabel("Tasa de evasión(%)")
+    ax5.set_ylim(0,1)
 
-st.error("⚠️**Factores de Alto Riesgo**")
-st.write("- Los clientes que tienen entre **2 a 5 servicios** tienen la mayor tasa de baja.")
+    st.pyplot(fig5)
+
+    st.error("⚠️**Factores de Alto Riesgo**")
+    st.write("- Los clientes que tienen entre **2 a 5 servicios** tienen la mayor tasa de baja.")
 
 st.divider()
+
 
