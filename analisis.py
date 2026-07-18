@@ -218,4 +218,53 @@ with col3:
 
 st.divider()
 
+servicios['Internet'] = df['InternetService']
+
+sub_servicios = servicios[servicios['Churn'] == 1]
+
+tab_servicios = pd.crosstab(sub_servicios['Internet'], sub_servicios['numero_servicios'], normalize='index')
+
+col4, col5 = st.columns([.5, .5])
+
+
+with col4:
+    st.subheader(f"**Cantidad de servicios por tipo de internet**")
+
+    fig5, ax5 = plt.subplots(figsize=(6,4))
+    ax5 = sns.boxplot(sub_servicios, x='Internet', y='numero_servicios', palette='Reds_d')
+    ax5.set_title('Distribución de servicios por tipo de internet', fontsize=12, fontweight='bold' )
+    ax5.set_xlabel('Internet', fontsize=10, fontweight='bold' )
+    ax5.set_ylabel('Cantidad de servicios', fontsize=10, fontweight='bold')
+
+    ax5.set_ylim(0, 10)
+    ax5.yaxis.set_minor_locator(ticker.MultipleLocator(1))
+
+    ax5.spines[['top', 'right']].set_visible(False)
+
+    st.pyplot(fig5)
+
+    st.error("⚠️**Factor de fuga**")
+
+    st.write("- Los clientes con el plan de internet '_fibra óptica_' contrataron entre **2 a 6 servicios**.")
+    st.write("- Los clientes con el plan '_dls_' contrataron entre **1 a 4 servicios**. ")
+    st.write("- Los clientes que no contrataron internet tienen un solo servicio, posiblemente la línea telefónica.\n \
+                El dato atípico puede corresponden a un cliente que contrato varias líneas telefónica." )
+
+
+tenure_internet = df[['Tenure', 'InternetService', 'Churn']]
+
+with col5:
+    fig6, ax6 = plt.subplots()
+    ax6 = sns.barplot(tenure_internet, x='InternetService', y='Tenure', hue='Churn', palette='PiYG_r')
+    ax6.set_title('Permanencia por servicio de internet', fontsize=12, fontweight='bold' )
+    ax6.set_xlabel('Internet', fontsize=10, fontweight='bold' )
+    ax6.set_ylabel('Permanencia', fontsize=10, fontweight='bold')
+
+    ax6.set_ylim(0, 80)
+    ax6.yaxis.set_minor_locator(ticker.MultipleLocator(5))
+
+    ax6.spines[['top', 'right']].set_visible(False)
+
+    st.pyplot(fig6)
+
 
