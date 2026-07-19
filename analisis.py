@@ -255,7 +255,7 @@ tenure_internet = df[['Tenure', 'InternetService', 'Churn']]
 
 with col5:
     fig6, ax6 = plt.subplots()
-    ax6 = sns.barplot(tenure_internet, x='InternetService', y='Tenure', hue='Churn', palette='PiYG_r')
+    ax6 = sns.boxplot(tenure_internet, x='InternetService', y='Tenure', hue='Churn', palette='PiYG_r')
     ax6.set_title('Permanencia por servicio de internet', fontsize=12, fontweight='bold' )
     ax6.set_xlabel('Internet', fontsize=10, fontweight='bold' )
     ax6.set_ylabel('Permanencia', fontsize=10, fontweight='bold')
@@ -267,4 +267,35 @@ with col5:
 
     st.pyplot(fig6)
 
+    st.error("⚠️**A tener en cuenta**")
+    st.write("- Entre los distintos tipos de servicios de internet, los que optaron " \
+     "por el plan fibra óptica se quedaron más tiempo (mediana 15 meses).")
+    st.write("- Destacamos la presencia de valores atípicos para los segmentos _'dsl'_ y _'no interner service'_")
 
+st.divider()
+
+st.header("🤔​:violet[**Conclusiones**]")
+st.html("<ul style='font-family: roboto; font-weight: bold;'>"
+            "<li> ✅ El género no es un factor que influye en la fuga de clientes.</li>"
+            "<br>"
+            "<li> ❌ Los clientes mayores a 65 años tienen una alta tasa de renuncia(42%) en comparación con los clientes menores de 65 años(24%).</li>"
+            "<br>"
+            "<li> ❌ El tipo de contrato mensual, el método de pago cheque electrónico y el servicio de fibra óptica tienen tasas altas de cancelación mayor que el promedio.</li>"
+            "<br>"
+            "<li> ❓​ Los clientes que renunciaron a los servicios de la empresa pagaron mensualmente más que los clientes que no se fueron. Sin embargo, estos primeros pagaron menos de cargos total que los últimos. Esto se relaciona con el tiempo de permanencia de los clientes, y es que los clientes que se dieron de baja permanecieron menos tiempo que los que no se fueron. En promedio, se quedaron 18 meses.</li>"
+            "<br>"
+            "<li> ❌ El porcentaje de renuncia en el número de servicios es muy alto, 44% para aquellos clientes que no contrataron servicios adicionales de internet o de teléfono. También, destacan las tasas de baja entre los clientes que tenían entre 2 a 4 servicios, cuyas tasas son 33%, 36% y 31% para clientes con 2 servicios, 3 servicios y 4 servicios, respectivamente.</li>"
+            "<br>"
+            "<li> ❓​ Los clientes con fibra óptica contrataron desde 1 hasta 8 servicios con porcentajes más alto de contratación para 2, 3, 4 y 5 servicios.</li>"
+            "<br>"
+            "<li> ❓​Los clientes con el servicio de internet dsl contrataron desde el servicio básico hasta 8 servicios, teniendo las tasas más altas de contratación los clientes con 1, 2 y 3 servicios.</li>"
+            "<br>"
+            "<li> ❓​ Los clientes que no tenían internet, tenían exclusivamente el servicio telefónico.</li>"
+            "<br>"
+            "<li> ❌ Los clientes churners con pocos servicios tienden a permanecer menos tiempo en la empresa.</li>"
+
+        "</ul>")
+
+st.divider()
+
+st.header("📖​✍️​:violet[**Recomendaciones**]")
