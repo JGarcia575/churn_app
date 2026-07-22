@@ -1,12 +1,14 @@
 <div style="display:flex; justify-content: center; align-items: center;">
 
-<img src="src/header.jpg">
+<img src="src/header.jpg" height=300 width=1000>
 
 </div>
 
 ---
 
-# **DASHBOARD APP**
+<div align="center">
+
+<h1 align="center" style="font-family:roboto; font-weight:bold;">DASHBOARD APP</h1>
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
 ![Pandas](https://img.shields.io/badge/Pandas-3.0.3-violet?logo=pandas)
@@ -14,18 +16,18 @@
 ![Streamlit](https://img.shields.io/badge/streamlit-1.58.0-red?logo=streamlit)
 ![Status](https://img.shields.io/badge/status-active-success)
 
+</div>
+
 ## **Sobre el proyecto**
 
 El proyecto es la continuación de los desafíos **_Telecom X Latinoamérica parte 1_** y **_parte 2_**. Aquí tomamos el análisis y modelado predictivo de los dos proyectos mencionados y los ponemos en una aplicación web que consiste de un dasboard interativo hecho con la tecnología Streamlit.
 
-La empresa de telecomunicaciones **_Telecom X Latinoamérica_** está enfrentando una alta tasa de cancelación y necesita comprender los factores que llevan a la pérdida de clientes. El challenge parte 1 consistió en recopilar, procesar y analizar los datos utilizando las bibliotecas Pandas, Matplotlib y Seaborn, con el objetivo de identificar los factores que están influyendo en la baja de clientes.
+La empresa de telecomunicaciones **_Telecom X Latinoamérica_** está enfrentando una alta tasa de cancelación y necesita, en primer lugar, comprender los factores que llevan a la pérdida de clientes y, en segundo lugar, anticiparse al problema de la cancelación. El challenge parte 1 consistió en recopilar, procesar y analizar los datos con el objetivo de identificar los factores que influyen en la baja de clientes. Una vez indentificados los patrones o tendencias que llevan a las personas a cancelar los servicios de la empresa, desarrollamos modelos de clasificación capaces de prever qué clientes tienen mayor probabilidad de cancelar sus servicios. 
 
-En cambio, la segunda parte del proyecto consistió en tomar los factores identificados en la parte 1 y desarrollar un modelo de Machine Learning capaz de predecir si un cliente va cancelar su suscripción.
-
-El proyecto responde a la necesidad de poner las soluciones encontradas en los desafíos en una aplicación web que sea de fácil acceso.
+El proyecto responde a la necesidad de poner las soluciones encontradas en los desafíos anteriores en una aplicación web que sea de fácil acceso.
 
 La **Dashaboard App** tiene dos partes:
-1. Análisis de evasión de clientes.
+1. Análisis exploratorio de evasión de clientes.
 2. Servicio de predicción de evasión.
 
 ## **Stack Tecnológico**
@@ -35,7 +37,7 @@ La **Dashaboard App** tiene dos partes:
 - Matplotlib.
 - Seaborn.
 - Pandas.
-- Scki-learn(_próximamente_).
+- Scki-learn.
 
 ## **Estructura del proyecto**
 
@@ -47,7 +49,11 @@ _Próximamente_
 
 ## **Funcionalidades**
 
-_Próximamente_.
+Las funcionalidades del proyecto son las siguientes:
+
+- Filtración interactiva por factor de la tasa de evasión de clientes.
+- Reporte de patrones de evasión y recomendaciones para mitigar el problema.
+- Servicio de predicción de evasión.
 
 ## **Live Demo**
 
