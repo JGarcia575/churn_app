@@ -45,7 +45,30 @@ _Próximamente_
 
 ## **Instalación y ejecución del proyecto**
 
-_Próximamente_
+1. En una terminal ejecute el siguiente comando para cloner el repositorio.
+
+    ```bash
+    git clone dashboard_app.git
+    ```
+2. En la misma carpeta donde descargo el repositorio, volver abrir una terminal y ejecutar el siguiente
+comando para instalar las dependencias del proyecto.
+
+    **En Windows**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+    **En Linux**
+    ```bash
+    pip3 install -r requirements.txt
+    ```
+
+3. Luego, para correr la aplicación ejecute lo siguiente.
+
+    ```bash
+    streamlit run app.py
+    ```
 
 ## **Funcionalidades**
 
